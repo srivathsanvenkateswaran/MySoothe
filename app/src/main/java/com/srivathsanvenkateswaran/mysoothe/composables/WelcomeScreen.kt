@@ -83,7 +83,7 @@ private fun MySootheLogo() {
 }
 
 @Composable
-private fun MySootheButton(
+fun MySootheButton(
     onClick: () -> Unit,
     buttonText: String,
     buttonColor: Color
