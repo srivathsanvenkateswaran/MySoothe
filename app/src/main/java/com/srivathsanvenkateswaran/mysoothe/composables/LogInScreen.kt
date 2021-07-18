@@ -4,13 +4,11 @@ import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -95,8 +93,9 @@ private fun LoginHeader() {
 }
 
 @Composable
-private fun MySootheTextField(
-    labelText: String
+fun MySootheTextField(
+    labelText: String,
+    leadingIcon: ImageVector? = null
 ) {
     val textFieldState by remember {
         mutableStateOf("")
@@ -109,7 +108,15 @@ private fun MySootheTextField(
             Text(text = labelText)
         },
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        leadingIcon = {
+            if (leadingIcon != null) {
+                Icon(
+                    imageVector = leadingIcon,
+                    contentDescription = null
+                )
+            }
+        }
     )
 }
 
