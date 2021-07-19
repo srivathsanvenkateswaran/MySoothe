@@ -32,5 +32,31 @@ val favoritesCollections = listOf<Collection>(
         name = "Nightly wind down",
         imageRes = R.drawable.nightly_wind_down
     ),
+)
 
+val alignYourBodyCollections = listOf<Collection>(
+    Collection(
+        name = "Inversions",
+        imageRes = R.drawable.inversions
+    ),
+    Collection(
+        name = "Quick yoga",
+        imageRes = R.drawable.quick_yoga
+    ),
+    Collection(
+        name = "Stretching",
+        imageRes = R.drawable.stretching
+    ),
+    Collection(
+        name = "Tabata",
+        imageRes = R.drawable.tabata
+    ),
+    Collection(
+        name = "HIIT",
+        imageRes = R.drawable.hiit
+    ),
+    Collection(
+        name = "Pre-natal yoga",
+        imageRes = R.drawable.pre_natal_yoga
+    ),
 )
