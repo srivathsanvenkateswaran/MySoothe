@@ -7,12 +7,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
@@ -33,8 +33,37 @@ import java.util.function.DoublePredicate
 
 @Composable
 fun HomeScreen() {
+    Scaffold(
+        bottomBar = {
+            BottomNavigation()
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {  },
+                backgroundColor = MaterialTheme.colors.primary
+            ) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = null
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.Center,
+        isFloatingActionButtonDocked = true
+    ) {
+        HomeScreenContent(
+            modifier = Modifier
+                .padding(it)
+        )
+    }
+}
+
+@Composable
+private fun HomeScreenContent(
+    modifier: Modifier = Modifier
+) {
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
@@ -56,7 +85,7 @@ fun HomeScreen() {
                 headerLabel = "FAVORITE COLLECTIONS",
                 baselinePadding = 40.dp
             )
-            
+
             Spacer(modifier = Modifier.height(8.dp))
 
             FavoriteCollectionsRow()
@@ -71,6 +100,40 @@ fun HomeScreen() {
                 collections = alignYourMindCollections
             )
         }
+    }
+}
+
+@Composable
+fun BottomNavigation() {
+    BottomAppBar(
+        backgroundColor = MaterialTheme.colors.background
+    ) {
+        BottomNavigationItem(
+            selected = true,
+            onClick = {  },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Spa,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(text = "HOME")
+            }
+        )
+        BottomNavigationItem(
+            selected = false,
+            onClick = {  },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(text = "PROFILE")
+            }
+        )
     }
 }
 
