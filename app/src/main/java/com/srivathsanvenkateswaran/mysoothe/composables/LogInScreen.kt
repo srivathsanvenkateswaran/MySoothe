@@ -21,7 +21,9 @@ import com.srivathsanvenkateswaran.mysoothe.R
 import com.srivathsanvenkateswaran.mysoothe.ui.theme.MySootheTheme
 
 @Composable
-fun LogInScreen() {
+fun LogInScreen(
+    onLoginClick: () -> Unit
+) {
 
     Surface(
         modifier = Modifier
@@ -49,7 +51,7 @@ fun LogInScreen() {
             Spacer(modifier = Modifier.height(8.dp))
 
             MySootheButton(
-                onClick = {  },
+                onClick = onLoginClick,
                 buttonText = "LOG IN",
                 buttonColor = MaterialTheme.colors.primary
             )
@@ -98,13 +100,15 @@ fun MySootheTextField(
     leadingIcon: ImageVector? = null,
     modifier: Modifier = Modifier
 ) {
-    val textFieldState by remember {
+    var textFieldState by remember {
         mutableStateOf("")
     }
 
     TextField(
-        value = "",
-        onValueChange = {},
+        value = textFieldState,
+        onValueChange = {
+            textFieldState = it
+        },
         label = {
             Text(text = labelText)
         },
@@ -152,6 +156,8 @@ private fun LogInBackground() {
 @Composable
 private fun WelcomeScreenPreview() {
     MySootheTheme {
-        LogInScreen()
+        LogInScreen(
+            onLoginClick = {}
+        )
     }
 }

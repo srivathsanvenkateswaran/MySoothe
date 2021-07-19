@@ -17,7 +17,10 @@ import com.srivathsanvenkateswaran.mysoothe.R
 import com.srivathsanvenkateswaran.mysoothe.ui.theme.MySootheTheme
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    onLoginClick: () -> Unit,
+    onSignUpClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -29,14 +32,18 @@ fun WelcomeScreen() {
 
         LogoButtonColumn(
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.Center),
+            onLoginClick = onLoginClick,
+            onSignUpClick = onSignUpClick
         )
     }
 }
 
 @Composable
 private fun LogoButtonColumn(
-    modifier: Modifier
+    modifier: Modifier,
+    onLoginClick: () -> Unit,
+    onSignUpClick: () -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -50,7 +57,7 @@ private fun LogoButtonColumn(
         Spacer(modifier = Modifier.height(32.dp))
 
         MySootheButton(
-            onClick = {},
+            onClick = onSignUpClick,
             buttonText = "SIGN UP",
             buttonColor = MaterialTheme.colors.primary
         )
@@ -58,7 +65,7 @@ private fun LogoButtonColumn(
         Spacer(modifier = Modifier.height(8.dp))
 
         MySootheButton(
-            onClick = {},
+            onClick = onLoginClick,
             buttonText = "LOG IN",
             buttonColor = MaterialTheme.colors.secondary
         )
@@ -132,6 +139,9 @@ private fun WelcomeBackground() {
 @Composable
 private fun WelcomeScreenPreview() {
     MySootheTheme {
-        WelcomeScreen()
+        WelcomeScreen(
+            onSignUpClick = {},
+            onLoginClick = {}
+        )
     }
 }
