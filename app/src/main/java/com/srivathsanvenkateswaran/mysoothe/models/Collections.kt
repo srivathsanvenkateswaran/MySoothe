@@ -60,3 +60,30 @@ val alignYourBodyCollections = listOf<Collection>(
         imageRes = R.drawable.pre_natal_yoga
     ),
 )
+
+val alignYourMindCollections = listOf<Collection>(
+    Collection(
+        name = "Meditate",
+        imageRes = R.drawable.meditate
+    ),
+    Collection(
+        name = "With kids",
+        imageRes = R.drawable.with_kids
+    ),
+    Collection(
+        name = "Aromatherapy",
+        imageRes = R.drawable.aromatherapy
+    ),
+    Collection(
+        name = "On the go",
+        imageRes = R.drawable.on_the_go
+    ),
+    Collection(
+        name = "With pets",
+        imageRes = R.drawable.with_pets
+    ),
+    Collection(
+        name = "High stress",
+        imageRes = R.drawable.high_stress
+    ),
+)
