@@ -95,7 +95,8 @@ private fun LoginHeader() {
 @Composable
 fun MySootheTextField(
     labelText: String,
-    leadingIcon: ImageVector? = null
+    leadingIcon: ImageVector? = null,
+    modifier: Modifier = Modifier
 ) {
     val textFieldState by remember {
         mutableStateOf("")
@@ -107,7 +108,7 @@ fun MySootheTextField(
         label = {
             Text(text = labelText)
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         leadingIcon = {
             if (leadingIcon != null) {
