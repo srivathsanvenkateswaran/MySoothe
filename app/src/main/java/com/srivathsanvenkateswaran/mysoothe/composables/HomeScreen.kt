@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,6 +30,7 @@ import com.srivathsanvenkateswaran.mysoothe.models.alignYourBodyCollections
 import com.srivathsanvenkateswaran.mysoothe.models.alignYourMindCollections
 import com.srivathsanvenkateswaran.mysoothe.models.favoritesCollections
 import com.srivathsanvenkateswaran.mysoothe.ui.theme.MySootheTheme
+import com.srivathsanvenkateswaran.mysoothe.ui.theme.White800
 import java.util.function.DoublePredicate
 
 @Composable
@@ -67,6 +69,14 @@ private fun HomeScreenContent(
             .fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
+        var isLight = MaterialTheme.colors.isLight
+
+        var textColor = if(isLight) {
+            White800
+        } else {
+            Color.Black.copy(alpha = 0.8F)
+        }
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -78,7 +88,8 @@ private fun HomeScreenContent(
                 labelText = "Search",
                 leadingIcon = Icons.Default.Search,
                 modifier = Modifier
-                    .padding(end = 16.dp)
+                    .padding(end = 16.dp),
+                textColor = textColor
             )
 
             SectionHeader(
