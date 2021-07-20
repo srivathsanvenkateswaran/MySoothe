@@ -4,21 +4,27 @@ import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.srivathsanvenkateswaran.mysoothe.R
 import com.srivathsanvenkateswaran.mysoothe.ui.theme.MySootheTheme
+import com.srivathsanvenkateswaran.mysoothe.ui.theme.White800
 
 @Composable
 fun LogInScreen(
@@ -42,11 +48,18 @@ fun LogInScreen(
             
             Spacer(modifier = Modifier.height(32.dp))
             
-            MySootheTextField(labelText = "Email address")
+            MySootheTextField(
+                labelText = "Email address",
+                keyboardType = KeyboardType.Email
+            )
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            MySootheTextField(labelText = "Password")
+            MySootheTextField(
+                labelText = "Password",
+                keyboardType = KeyboardType.Password,
+                visualTransformation = PasswordVisualTransformation()
+            )
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -98,10 +111,21 @@ private fun LoginHeader() {
 fun MySootheTextField(
     labelText: String,
     leadingIcon: ImageVector? = null,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    textColor: Color = MaterialTheme.colors.onSurface
 ) {
     var textFieldState by remember {
         mutableStateOf("")
+    }
+
+    var isLight = MaterialTheme.colors.isLight
+
+    var backgroundColor = if (isLight) {
+        White800
+    } else {
+        MaterialTheme.colors.onSurface.copy(alpha = TextFieldDefaults.BackgroundOpacity)
     }
 
     TextField(
@@ -110,7 +134,11 @@ fun MySootheTextField(
             textFieldState = it
         },
         label = {
-            Text(text = labelText)
+            Text(
+                text = labelText,
+                style = MaterialTheme.typography.body1,
+                color = textColor
+            )
         },
         modifier = modifier
             .fillMaxWidth(),
@@ -121,7 +149,14 @@ fun MySootheTextField(
                     contentDescription = null
                 )
             }
-        }
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType
+        ),
+        visualTransformation = visualTransformation,
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = backgroundColor
+        )
     )
 }
 
