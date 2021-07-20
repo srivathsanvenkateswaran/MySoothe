@@ -72,9 +72,9 @@ private fun HomeScreenContent(
         var isLight = MaterialTheme.colors.isLight
 
         var textColor = if(isLight) {
-            White800
-        } else {
             Color.Black.copy(alpha = 0.8F)
+        } else {
+            White800
         }
 
         Column(
